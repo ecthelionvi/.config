@@ -1,0 +1,22 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Newline
+add_newline = false
+
+## Modules ## 
+[cmd_duration]
+disabled = true
+
+[line_break]
+disabled = true
+
+[battery]
+disabled = true
+
+[python]
+detect_extensions = []
+
+[character]
+success_symbol = '[➜](bold green)'
+error_symbol = '[➜](bold red)'
