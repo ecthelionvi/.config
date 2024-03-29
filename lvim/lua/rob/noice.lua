@@ -135,6 +135,13 @@ noice.setup {
       },
       opts = { skip = true },
     },
+    {
+      filter = {
+        event = "notify",
+        find = [[5 git jobs have timed out after 200ms, disabling git integration.Try increasing git.timeout]]
+      },
+      opts = { skip = true },
+    },
   },
   views = {
     popup = {
