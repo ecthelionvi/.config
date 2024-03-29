@@ -46,6 +46,12 @@ function M.toggle_relative_number()
   vim.o.relativenumber = not vim.o.relativenumber
 end
 
+-- Plugins
+function M.plugins()
+  local filepath = "~/.config/lvim/lua/rob/plugins.lua"
+  vim.cmd("edit " .. filepath)
+end
+
 -- Hide_Filetype
 function M.hide_filetype()
   local ft = { "lazy", "harpoon", "noice",

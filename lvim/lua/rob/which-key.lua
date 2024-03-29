@@ -18,7 +18,8 @@ lvim.builtin.which_key.mappings = {
     d = { "<cmd>Lazy debug<cr>", "Debug" },
     S = { "<cmd>Lazy clear<cr>", "Status" },
     u = { "<cmd>Lazy update<cr>", "Update" },
-    p = { "<cmd>Lazy profile<cr>", "Profile" },
+    -- p = { "<cmd>Lazy profile<cr>", "Profile" },
+    p = { "<cmd>Plugins<cr>", "Plugins" },
     i = { "<cmd>Lazy install<cr>", "Install" },
   },
 

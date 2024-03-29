@@ -4,8 +4,14 @@ local M = {}
 
 local cmd = vim.api.nvim_create_user_command
 
+-- Print-Working-Directory
+cmd("PWD", "echo expand('%:p:h')", {})
+
 -- Trim
 cmd("Trim", "lua require('rob.utils').trim()", {})
+
+-- Plugins 
+cmd("Plugins", "lua require('rob.utils').plugins()", {})
 
 -- Select-All
 cmd("SelectAll", "lua require('rob.utils').select_all()", {})
@@ -16,9 +22,6 @@ cmd("ClearHistory", "lua require('rob.utils').clear_history()", {})
 -- Jump-Brackets
 cmd("MoveNext", "lua require('rob.utils').jump_brackets('next')", {})
 cmd("MovePrev", "lua require('rob.utils').jump_brackets('prev')", {})
-
--- Print-Working-Directory
-cmd("PWD", "echo expand('%:p:h')", {})
 
 -- Clear-Hover
 cmd("ClearHover", "lua require('rob.utils').close_hover_windows()", {})
