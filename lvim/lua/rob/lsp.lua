@@ -7,6 +7,9 @@ lvim.lsp.on_attach_callback = function(client, _)
   client.server_capabilities.semanticTokensProvider = nil
 end
 
+-- Disbale Messages
+vim.lsp.set_log_level("warn")
+
 -- TSServer
 require('lspconfig').tsserver.setup({
   init_options = {

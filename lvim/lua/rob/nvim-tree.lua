@@ -7,7 +7,7 @@ lvim.builtin.nvimtree.setup.filters.dotfiles = true
 lvim.builtin.nvimtree.setup.view = { adaptive_size = true }
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
 lvim.builtin.nvimtree.setup.update_focused_file.ignore_list = { "toggleterm", "terminal" }
-lvim.builtin.nvimtree.setup.git.timeout = 400
+lvim.builtin.nvimtree.setup.git.timeout = 1000
 
 
 return M

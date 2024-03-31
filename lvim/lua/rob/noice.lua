@@ -25,6 +25,7 @@ noice.setup {
     },
     override = {
       ["vim.lsp.rust_analyzer"] = false,
+      ["vim.lsp.csharp"] = false,
     },
   },
   routes = {
@@ -122,6 +123,10 @@ noice.setup {
     },
     {
       filter = { event = "msg_show", find = "Error executing vim.schedule lua callback" },
+      opts = { skip = true },
+    },
+    {
+      filter = { event = "lsp", find = "" },
       opts = { skip = true },
     },
     {
