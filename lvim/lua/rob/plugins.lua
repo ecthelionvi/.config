@@ -9,6 +9,16 @@ local opts = { noremap = true, silent = true }
 
 lvim.plugins = {
 
+  -- Clever-F
+  {
+    "rhysd/clever-f.vim",
+    event = "VeryLazy",
+    config = function()
+      vim.g.clever_f_smart_case = 1
+      vim.g.clever_f_highlight_timeout_ms = 3000
+    end
+  },
+
   -- Vimwiki
   {
     "vimwiki/vimwiki",

@@ -175,8 +175,8 @@ noice.setup {
     format = {
       lua = false,
       help = false,
-      search_up = { kind = "search", pattern = "^%?", icon = "󱡁", lang = "regex" },
-      search_down = { kind = "search", pattern = "^/", icon = "󱡁", lang = "regex" },
+      search_up = { kind = "search", pattern = "^%?", icon = "󰣉", lang = "regex" },
+      search_down = { kind = "search", pattern = "^/", icon = "󰣉", lang = "regex" },
     },
   },
 }
