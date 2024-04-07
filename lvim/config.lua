@@ -3,6 +3,7 @@
 local M = {}
 
 -- Modules
+reload("rob.lir")
 reload("rob.lsp")
 reload("rob.noice")
 reload("rob.utils")
