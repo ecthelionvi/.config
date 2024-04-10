@@ -8,32 +8,6 @@ local cmd = vim.cmd
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true, buffer = 0 }
 
-
-function M.save(buf)
-  buf = buf or api.nvim_get_current_buf()
-
-  if not api.nvim_buf_get_option(buf, "modified") then
-    return
-  end
-
-  api.nvim_buf_call(buf, function()
-    cmd("silent! write")
-  end)
-end
-
-function M.debounce(lfn, duration)
-  local queued = false
-  return function()
-    if not queued then
-      vim.defer_fn(function()
-        queued = false
-        lfn()
-      end, duration)
-      queued = true
-    end
-  end
-end
-
 function M.save_func()
   M.debounce(M.save, 300)()
 end
@@ -100,6 +74,32 @@ end
 -- Relative Number
 function M.toggle_relative_number()
   vim.o.relativenumber = not vim.o.relativenumber
+end
+
+-- Auto-Save
+function M.save(buf)
+  buf = buf or api.nvim_get_current_buf()
+
+  if not api.nvim_buf_get_option(buf, "modified") then
+    return
+  end
+
+  api.nvim_buf_call(buf, function()
+    cmd("silent! write")
+  end)
+end
+
+function M.debounce(lfn, duration)
+  local queued = false
+  return function()
+    if not queued then
+      vim.defer_fn(function()
+        queued = false
+        lfn()
+      end, duration)
+      queued = true
+    end
+  end
 end
 
 -- Dashboard
