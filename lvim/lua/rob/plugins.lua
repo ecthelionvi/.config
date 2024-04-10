@@ -51,16 +51,16 @@ lvim.plugins = {
   },
 
   -- AutoSave
-  {
-    "Pocco81/auto-save.nvim",
-    opts = {
-      execution_message = {
-        message = function()
-          return ("")
-        end,
-      },
-    }
-  },
+  -- {
+  --   "Pocco81/auto-save.nvim",
+  --   opts = {
+  --     execution_message = {
+  --       message = function()
+  --         return ("")
+  --       end,
+  --     },
+  --   }
+  -- },
 
   -- Noice
   {
@@ -197,6 +197,10 @@ lvim.plugins = {
       opts),
     map("n", "ge", "<Plug>CamelCaseMotion_ge",
       opts),
+    map("o", "iw", "<Plug>CamelCaseMotion_iw",
+      opts),
+    map("x", "iw", "<Plug>CamelCaseMotion_iw",
+      opts),
   },
 
   -- Hop
@@ -279,48 +283,6 @@ lvim.plugins = {
       require('treesj').setup({ use_default_keymaps = false })
     end,
     map("n", "zz", "<cmd>TSJToggle<cr>", opts)
-  },
-
-  -- Yanky
-  {
-    "gbprod/yanky.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("yanky").setup({
-        -- ring = {
-        --   history_length = 100,
-        --   storage = "shada",
-        --   sync_with_numbered_registers = true,
-        --   cancel_event = "update",
-        -- },
-        -- picker = {
-        --   select = {
-        --     action = nil,
-        --   },
-        --   telescope = {
-        --     mappings = nil,
-        --   },
-        -- },
-        system_clipboard = {
-          sync_with_ring = true,
-        },
-        highlight = {
-          on_put = true,
-          on_yank = true,
-          timer = 500,
-        },
-        preserve_cursor_position = {
-          enabled = true,
-        },
-      })
-      map({ "n", "x" }, "y", "<Plug>(YankyYank)", opts)
-      -- map("n", "<c-n>", "<Plug>(YankyCycleForward)", opts)
-      -- map("n", "<c-p>", "<Plug>(YankyCycleBackward)", opts)
-      -- map({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", opts)
-      -- map({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", opts)
-      -- map({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)", opts)
-      -- map({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)", opts)
-    end
   },
 
   -- Dial
@@ -455,7 +417,6 @@ lvim.plugins = {
     event = "VeryLazy",
     config = function()
       require("substitute").setup({
-        on_substitute = require("yanky.integration").substitute(),
         map("n", "cxx", "<cmd>lua require('substitute.exchange').line()<cr>", opts),
         map("x", "X", "<cmd>lua require('substitute.exchange').visual()<cr>", opts),
         map("n", "cc", "<cmd>lua require('substitute.exchange').cancel()<cr>", opts),

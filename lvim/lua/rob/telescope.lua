@@ -3,9 +3,9 @@
 local M = {}
 
 lvim.builtin.telescope.defaults.path_display = { "truncate" }
-lvim.builtin.telescope.on_config_done = function(telescope)
-  pcall(telescope.load_extension, "yank_history")
-end
+-- lvim.builtin.telescope.on_config_done = function(telescope)
+--   pcall(telescope.load_extension, "yank_history")
+-- end
 
 
 function M.construct_command_fd(base_command, exclusions)

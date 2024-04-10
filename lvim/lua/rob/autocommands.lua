@@ -5,6 +5,17 @@ local M = {}
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
+-- Auto-Save
+autocmd({ "InsertLeave", "TextChanged" }, {
+  group = augroup("auto-save", { clear = true }),
+  callback = function()
+    vim.schedule(function()
+      pcall(function() require("rob.utils").save_func() end)
+    end)
+  end,
+  pattern = "*",
+})
+
 -- Hide-Filetype
 autocmd("FileType", {
   group = augroup("hide-filetype", { clear = true }),
@@ -42,6 +53,25 @@ autocmd({ "BufNew", "BufWinEnter" }, {
       pcall(function() require("rob.utils").cwd_set_options() end)
       pcall(function() require("rob.utils").special_keymaps() end)
     end)
+  end,
+})
+
+
+-- Preserve-Cursor-Yank
+autocmd({ 'VimEnter', 'CursorMoved' }, {
+  group = augroup('PreserveCursorYank', { clear = true }),
+  callback = function()
+    vim.b.pre_yank_cursor_pos = vim.api.nvim_win_get_cursor(0)
+  end,
+})
+
+autocmd('TextYankPost', {
+  group = 'PreserveCursorYank',
+  callback = function()
+    if vim.v.event.operator == 'y' and vim.b.pre_yank_cursor_pos then
+      vim.api.nvim_win_set_cursor(0, vim.b.pre_yank_cursor_pos)
+    end
+    vim.highlight.on_yank({ higroup = 'Search', timeout = 250 })
   end,
 })
 
