@@ -11,7 +11,10 @@ local opts = { noremap = true, silent = true }
 -- Macro
 map("n", "Q", "@q", opts)
 
--- Visual Backspace
+-- Pure-Paste
+map('x', 'p', '"_dP', opts)
+
+-- Visual-Backspace
 map("x", "<bs>", '"_x', opts)
 
 -- Movement

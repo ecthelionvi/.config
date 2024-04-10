@@ -128,6 +128,7 @@ lvim.plugins = {
       require("cutlass").setup({
         exclude = { "ns", "nS" },
         cut_key = "m",
+        override_del = true,
       })
     end
   },
@@ -286,20 +287,20 @@ lvim.plugins = {
     event = "VeryLazy",
     config = function()
       require("yanky").setup({
-        ring = {
-          history_length = 100,
-          storage = "shada",
-          sync_with_numbered_registers = true,
-          cancel_event = "update",
-        },
-        picker = {
-          select = {
-            action = nil,
-          },
-          telescope = {
-            mappings = nil,
-          },
-        },
+        -- ring = {
+        --   history_length = 100,
+        --   storage = "shada",
+        --   sync_with_numbered_registers = true,
+        --   cancel_event = "update",
+        -- },
+        -- picker = {
+        --   select = {
+        --     action = nil,
+        --   },
+        --   telescope = {
+        --     mappings = nil,
+        --   },
+        -- },
         system_clipboard = {
           sync_with_ring = true,
         },
@@ -313,12 +314,12 @@ lvim.plugins = {
         },
       })
       map({ "n", "x" }, "y", "<Plug>(YankyYank)", opts)
-      map("n", "<c-n>", "<Plug>(YankyCycleForward)", opts)
-      map("n", "<c-p>", "<Plug>(YankyCycleBackward)", opts)
-      map({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", opts)
-      map({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", opts)
-      map({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)", opts)
-      map({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)", opts)
+      -- map("n", "<c-n>", "<Plug>(YankyCycleForward)", opts)
+      -- map("n", "<c-p>", "<Plug>(YankyCycleBackward)", opts)
+      -- map({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", opts)
+      -- map({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", opts)
+      -- map({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)", opts)
+      -- map({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)", opts)
     end
   },
 

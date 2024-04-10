@@ -30,6 +30,10 @@ noice.setup {
   },
   routes = {
     {
+      filter = { event = "lsp", find = "" },
+      opts = { skip = true },
+    },
+    {
       filter = { event = "msg_show", find = "->" },
       opts = { skip = true },
     },
@@ -63,6 +67,14 @@ noice.setup {
     },
     {
       filter = { event = "msg_show", find = "E486" },
+      opts = { skip = true },
+    },
+    {
+      filter = { event = "msg_show", find = "more" },
+      opts = { skip = true },
+    },
+    {
+      filter = { event = "msg_show", find = "lines" },
       opts = { skip = true },
     },
     {
@@ -123,10 +135,6 @@ noice.setup {
     },
     {
       filter = { event = "msg_show", find = "Error executing vim.schedule lua callback" },
-      opts = { skip = true },
-    },
-    {
-      filter = { event = "lsp", find = "" },
       opts = { skip = true },
     },
     {
