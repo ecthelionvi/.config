@@ -5,7 +5,7 @@ local M = {}
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
-
+-- Save-Cursor
 vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
   group = augroup("auto-save", { clear = true }),
   pattern = '*',

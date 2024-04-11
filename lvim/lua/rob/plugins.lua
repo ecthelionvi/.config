@@ -9,16 +9,6 @@ local opts = { noremap = true, silent = true }
 
 lvim.plugins = {
 
-  -- Clever-F
-  {
-    "rhysd/clever-f.vim",
-    event = "VeryLazy",
-    config = function()
-      vim.g.clever_f_smart_case = 1
-      vim.g.clever_f_highlight_timeout_ms = 3000
-    end
-  },
-
   -- Vimwiki
   {
     "vimwiki/vimwiki",
@@ -66,10 +56,10 @@ lvim.plugins = {
   },
 
   -- Diffview
-  {
-    "sindrets/diffview.nvim",
-    event = "VeryLazy",
-  },
+  -- {
+  --   "sindrets/diffview.nvim",
+  --   event = "VeryLazy",
+  -- },
 
   -- Numb
   {
@@ -132,22 +122,22 @@ lvim.plugins = {
   },
 
   -- Better-Escape
-  {
-    "max397574/better-escape.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("better_escape").setup()
-    end,
-  },
+  -- {
+  --   "max397574/better-escape.nvim",
+  --   event = "VeryLazy",
+  --   config = function()
+  --     require("better_escape").setup()
+  --   end,
+  -- },
 
   -- Stay-In-Place
-  {
-    "gbprod/stay-in-place.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("stay-in-place").setup()
-    end
-  },
+  -- {
+  --   "gbprod/stay-in-place.nvim",
+  --   event = "VeryLazy",
+  --   config = function()
+  --     require("stay-in-place").setup()
+  --   end
+  -- },
 
   -- Surround
   {
@@ -422,14 +412,11 @@ lvim.plugins = {
       require('code_runner').setup {
         mode = "term",
         term = {
-          --  Position to open the terminal, this option is ignored if mode ~= term
           position = "bot",
-          -- window size, this option is ignored if mode == tab
           size = 18,
         },
         startinsert = false,
         focus = true,
-        --filetype_path = "", -- No default path defined
         filetype = {
           javascript = "node",
           java = "cd $dir && javac $fileName && java $fileNameWithoutExt",
@@ -439,8 +426,6 @@ lvim.plugins = {
           sh = "bash",
           rust = "cd $dir && rustc $fileName && $dir/$fileNameWithoutExt",
         },
-        --project_path = "", -- No default path defined
-        --project = {},
         map("n", "<leader>r", function()
           return require('rob.utils').code_runner()
         end, { noremap = true, silent = true, expr = true, })
