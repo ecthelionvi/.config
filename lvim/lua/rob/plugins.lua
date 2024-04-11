@@ -50,18 +50,6 @@ lvim.plugins = {
     cmd = "LazyGit",
   },
 
-  -- AutoSave
-  -- {
-  --   "Pocco81/auto-save.nvim",
-  --   opts = {
-  --     execution_message = {
-  --       message = function()
-  --         return ("")
-  --       end,
-  --     },
-  --   }
-  -- },
-
   -- Noice
   {
     "folke/noice.nvim",
@@ -75,14 +63,6 @@ lvim.plugins = {
   {
     "mechatroner/rainbow_csv",
     event = "VeryLazy",
-  },
-
-
-  -- Neoview
-  {
-    "ecthelionvi/NeoView.nvim",
-    event = "VeryLazy",
-    opts = {}
   },
 
   -- Diffview

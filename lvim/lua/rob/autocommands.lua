@@ -5,9 +5,16 @@ local M = {}
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
+
+vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
+  group = augroup("auto-save", { clear = true }),
+  pattern = '*',
+  command = 'silent! normal! g`"zv',
+})
+
 -- Auto-Save
 autocmd({ "InsertLeave", "TextChanged" }, {
-  group = augroup("auto-save", { clear = true }),
+  group = "auto-save",
   callback = function()
     vim.schedule(function()
       pcall(function() require("rob.utils").save_func() end)
