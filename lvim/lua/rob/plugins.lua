@@ -55,23 +55,17 @@ lvim.plugins = {
     event = "VeryLazy",
   },
 
-  -- Diffview
-  -- {
-  --   "sindrets/diffview.nvim",
-  --   event = "VeryLazy",
-  -- },
-
   -- Numb
-  {
-    "nacro90/numb.nvim",
-    event = "BufRead",
-    config = function()
-      require("numb").setup {
-        show_numbers = true,
-        show_cursorline = true,
-      }
-    end
-  },
+  -- {
+  --   "nacro90/numb.nvim",
+  --   event = "BufRead",
+  --   config = function()
+  --     require("numb").setup {
+  --       show_numbers = true,
+  --       show_cursorline = true,
+  --     }
+  --   end
+  -- },
 
   -- Notify
   {
@@ -103,6 +97,12 @@ lvim.plugins = {
     end
   },
 
+  -- Python-Indent
+  {
+    "Vimjas/vim-python-pep8-indent",
+    event = "BufRead",
+  },
+
   -- Rainbow-Delimiters
   {
     "HiPhish/rainbow-delimiters.nvim",
@@ -113,12 +113,6 @@ lvim.plugins = {
   {
     "chrisgrieser/nvim-various-textobjs",
     lazy = "BufRead",
-  },
-
-  -- Python-Indent
-  {
-    "Vimjas/vim-python-pep8-indent",
-    event = "BufRead",
   },
 
   -- Better-Escape
