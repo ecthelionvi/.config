@@ -55,18 +55,6 @@ lvim.plugins = {
     event = "VeryLazy",
   },
 
-  -- Numb
-  -- {
-  --   "nacro90/numb.nvim",
-  --   event = "BufRead",
-  --   config = function()
-  --     require("numb").setup {
-  --       show_numbers = true,
-  --       show_cursorline = true,
-  --     }
-  --   end
-  -- },
-
   -- Notify
   {
     "rcarriga/nvim-notify",
@@ -114,24 +102,6 @@ lvim.plugins = {
     "chrisgrieser/nvim-various-textobjs",
     lazy = "BufRead",
   },
-
-  -- Better-Escape
-  -- {
-  --   "max397574/better-escape.nvim",
-  --   event = "VeryLazy",
-  --   config = function()
-  --     require("better_escape").setup()
-  --   end,
-  -- },
-
-  -- Stay-In-Place
-  -- {
-  --   "gbprod/stay-in-place.nvim",
-  --   event = "VeryLazy",
-  --   config = function()
-  --     require("stay-in-place").setup()
-  --   end
-  -- },
 
   -- Surround
   {
