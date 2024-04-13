@@ -3,8 +3,6 @@
 local M = {}
 
 local map = vim.keymap.set
-local autocmd = vim.api.nvim_create_autocmd
-local augroup = vim.api.nvim_create_augroup
 local opts = { noremap = true, silent = true }
 
 lvim.plugins = {
@@ -177,23 +175,6 @@ lvim.plugins = {
           line_down = '<m-down>',
           line_up = '<m-up>',
         },
-      })
-    end
-  },
-
-  -- Sticky-Buf
-  {
-    "stevearc/stickybuf.nvim",
-    event = "BufRead",
-    config = function()
-      require('stickybuf').setup()
-      autocmd({ "TermOpen", "TermEnter" }, {
-        group = augroup("sticky-buf", { clear = true }),
-        callback = function()
-          vim.schedule(function()
-            require("stickybuf").pin()
-          end)
-        end
       })
     end
   },
