@@ -9,11 +9,4 @@ lvim.builtin.lualine.sections.lualine_x = {
   components.filetype,
 }
 
-lvim.builtin.lualine.sections.lualine_c = {
-  {
-	require('NeoComposer.ui').status_recording,
-  padding = { left = 1 },
-  },
-}
-
 return M

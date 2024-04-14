@@ -8,6 +8,7 @@ local cmd = vim.cmd
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true, buffer = 0 }
 
+-- Auto-Save
 function M.save_func()
   M.debounce(M.save, 300)()
 end
@@ -215,7 +216,9 @@ function M.special_keymaps()
     map("n", "<leader>q", "<cmd>NvimTreeToggle<cr>", opts)
   end
   if bt:match("nofile") then
+    map("n", "q", "<cmd>clo!<cr>", opts)
     map("n", "<esc>", "<cmd>clo!<cr>", opts)
+    map("n", "<leader>q", "<cmd>clo!<cr>", opts)
   end
   if vim.tbl_contains({ "qf", "help", "man", "noice" }, ft) then
     map("n", "q", "<cmd>clo!<cr>", opts)
@@ -273,5 +276,21 @@ function M.code_runner()
   end, api.nvim_list_bufs())
   return #crunner_bufs > 0 and "<cmd>silent! bd " .. crunner_bufs[1] .. "<cr>" or "<cmd>silent! RunCode<cr>"
 end
+
+-- URL-Matcher
+function M.set_url_match()
+  M.delete_url_match()
+  vim.fn.matchadd("HighlightURL", M.url_matcher, 15)
+  vim.cmd('highlight HighlightURL cterm=underline gui=underline')
+end
+
+function M.delete_url_match()
+  for _, match in ipairs(vim.fn.getmatches()) do
+    if match.group == "HighlightURL" then vim.fn.matchdelete(match.id) end
+  end
+end
+
+M.url_matcher =
+"\\v\\c%(%(h?ttps?|ftp|file|ssh|git)://|[a-z]+[@][a-z]+[.][a-z]+:)%([&:#*@~%_\\-=?!+;/0-9a-z]+%(%([.;/?]|[.][.]+)[&:#*@~%_\\-=?!+/0-9a-z]+|:\\d+|,%(%(%(h?ttps?|ftp|file|ssh|git)://|[a-z]+[@][a-z]+[.][a-z]+:)@![0-9a-z]+))*|\\([&:#*@~%_\\-=?!+;/.0-9a-z]*\\)|\\[[&:#*@~%_\\-=?!+;/.0-9a-z]*\\]|\\{%([&:#*@~%_\\-=?!+;/.0-9a-z]*|\\{[&:#*@~%_\\-=?!+;/.0-9a-z]*})\\})+"
 
 return M

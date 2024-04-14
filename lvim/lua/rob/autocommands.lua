@@ -5,6 +5,12 @@ local M = {}
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
+autocmd({ "VimEnter", "FileType", "BufEnter", "WinEnter" }, {
+  desc = "URL Highlighting",
+  group = augroup("highlighturl", { clear = true }),
+  callback = function() require('rob.utils').set_url_match() end,
+})
+
 -- Save-Cursor
 vim.api.nvim_create_autocmd('BufWinEnter', {
   group = augroup("auto-save", { clear = true }),

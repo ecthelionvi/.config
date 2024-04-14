@@ -6,7 +6,6 @@ local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 lvim.plugins = {
-
   -- Vimwiki
   {
     "vimwiki/vimwiki",
@@ -261,32 +260,32 @@ lvim.plugins = {
   },
 
   -- Silicon
-  {
-    'krivahtoo/silicon.nvim',
-    event = 'VeryLazy',
-    build = './install.sh build',
-    config = function()
-      require('silicon').setup({
-        font = 'JetBrainsMonoNerdFont=26',
-        background = '#87f',
-        theme = 'tokyonight_night',
-        line_number = true,
-        pad_vert = 80,
-        pad_horiz = 50,
-        output = {
-          clipboard = false,
-          path = "/Users/rob/Documents/Screenshots",
-          format = "silicon_[year][month][day]_[hour][minute][second].png"
-        },
-        watermark = {
-          text = ' @ecthelionvi',
-        },
-        window_title = function()
-          return vim.fn.fnamemodify(vim.fn.bufname(vim.fn.bufnr()), ':~:.')
-        end,
-      })
-    end
-  },
+  -- {
+  --   'krivahtoo/silicon.nvim',
+  --   event = 'VeryLazy',
+  --   build = './install.sh build',
+  --   config = function()
+  --     require('silicon').setup({
+  --       font = 'JetBrainsMonoNerdFont=26',
+  --       background = '#87f',
+  --       theme = 'tokyonight_night',
+  --       line_number = true,
+  --       pad_vert = 80,
+  --       pad_horiz = 50,
+  --       output = {
+  --         clipboard = false,
+  --         path = "/Users/rob/Documents/Screenshots",
+  --         format = "silicon_[year][month][day]_[hour][minute][second].png"
+  --       },
+  --       watermark = {
+  --         text = ' @ecthelionvi',
+  --       },
+  --       window_title = function()
+  --         return vim.fn.fnamemodify(vim.fn.bufname(vim.fn.bufnr()), ':~:.')
+  --       end,
+  --     })
+  --   end
+  -- },
 
   -- Copilot
   {
