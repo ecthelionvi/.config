@@ -8,66 +8,6 @@ local cmd = vim.cmd
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true, buffer = 0 }
 
--- Cycle-Windows
-function M.get_window_details()
-  local details = {}
-  local windows = api.nvim_list_wins()
-  local active_win_id = api.nvim_get_current_win()
-
-  for _, win_id in ipairs(windows) do
-    local buf_id = api.nvim_win_get_buf(win_id)
-    local buf_type = api.nvim_buf_get_option(buf_id, 'buftype')
-    local file_type = api.nvim_buf_get_option(buf_id, 'filetype')
-
-    if buf_type == '' or file_type == 'NvimTree' then
-      local is_active = win_id == active_win_id
-
-      table.insert(details, {
-        window_id = win_id,
-        active = is_active
-      })
-    end
-  end
-
-  return details
-end
-
-function M.move_to_right_window()
-  local details = M.get_window_details()
-  local num_windows = #details
-
-  local current_index = 1
-  for i, detail in ipairs(details) do
-    if detail.active then
-      current_index = i
-      break
-    end
-  end
-
-  local right_index = current_index % num_windows + 1
-
-  local right_window_id = details[right_index].window_id
-  api.nvim_set_current_win(right_window_id)
-end
-
-function M.move_to_left_window()
-  local details = M.get_window_details()
-  local num_windows = #details
-
-  local current_index = 1
-  for i, detail in ipairs(details) do
-    if detail.active then
-      current_index = i
-      break
-    end
-  end
-
-  local left_index = (current_index - 2 + num_windows) % num_windows + 1
-
-  local left_window_id = details[left_index].window_id
-  api.nvim_set_current_win(left_window_id)
-end
-
 -- Auto-Save
 function M.save_func()
   M.debounce(M.save, 300)()
@@ -120,6 +60,16 @@ function M.toggle_diagnostic_hover()
   vim.diagnostic.open_float()
 end
 
+-- Hide_Filetype
+function M.hide_filetype()
+  local ft = { "lazy", "harpoon", "noice",
+    "toggleterm", "TelescopePrompt" }
+  if vim.tbl_contains(ft, vim.bo.filetype)
+  then
+    api.nvim_buf_set_option(0, 'filetype', '')
+  end
+end
+
 -- Close-All-Hidden
 function M.close_all_hidden()
   local bufnums = api.nvim_list_bufs()
@@ -135,32 +85,6 @@ end
 -- Relative Number
 function M.toggle_relative_number()
   vim.o.relativenumber = not vim.o.relativenumber
-end
-
--- Auto-Save
-function M.save(buf)
-  buf = buf or api.nvim_get_current_buf()
-
-  if not api.nvim_buf_get_option(buf, "modified") then
-    return
-  end
-
-  api.nvim_buf_call(buf, function()
-    cmd("silent! write")
-  end)
-end
-
-function M.debounce(lfn, duration)
-  local queued = false
-  return function()
-    if not queued then
-      vim.defer_fn(function()
-        queued = false
-        lfn()
-      end, duration)
-      queued = true
-    end
-  end
 end
 
 -- Dashboard
@@ -183,30 +107,36 @@ function M.count_buffers()
   end, api.nvim_list_bufs()))
 end
 
+-- Auto-Save
+function M.debounce(lfn, duration)
+  local queued = false
+  return function()
+    if not queued then
+      vim.defer_fn(function()
+        queued = false
+        lfn()
+      end, duration)
+      queued = true
+    end
+  end
+end
+
+function M.save(buf)
+  buf = buf or api.nvim_get_current_buf()
+
+  if not api.nvim_buf_get_option(buf, "modified") then
+    return
+  end
+
+  api.nvim_buf_call(buf, function()
+    cmd("silent! write")
+  end)
+end
+
 -- Plugins
 function M.plugins()
   local filepath = "~/.config/lvim/lua/rob/plugins.lua"
   cmd("edit " .. filepath)
-end
-
--- Hide_Filetype
-function M.hide_filetype()
-  local ft = { "lazy", "harpoon", "noice",
-    --[[ "NvimTree", ]] "toggleterm", "TelescopePrompt" }
-  if vim.tbl_contains(ft, vim.bo.filetype)
-  then
-    api.nvim_buf_set_option(0, 'filetype', '')
-  end
-end
-
--- Cwd-Set-Options
-function M.cwd_set_options()
-  local ft = vim.bo.filetype
-  local dir = fn.expand('%:h')
-  vim.g.copilot_no_tab_map = true
-  vim.o.fo = vim.o.fo:gsub("[cro]", "")
-  if ft == "alpha" and M.count_buffers() > 0 then return end
-  if fn.isdirectory(dir) and ft ~= "" then fn.chdir(dir) end
 end
 
 -- Jump-Brackets
@@ -219,6 +149,16 @@ function M.jump_brackets(dir)
     if lnum == 0 and col == 0 then return end
     fn.setpos('.', { 0, lnum, col, 0 })
   end
+end
+
+-- Cwd-Set-Options
+function M.cwd_set_options()
+  local ft = vim.bo.filetype
+  local dir = fn.expand('%:h')
+  vim.g.copilot_no_tab_map = true
+  vim.o.fo = vim.o.fo:gsub("[cro]", "")
+  if ft == "alpha" and M.count_buffers() > 0 then return end
+  if fn.isdirectory(dir) and ft ~= "" then fn.chdir(dir) end
 end
 
 -- Nvim-Tree-Open
@@ -248,6 +188,66 @@ function M.close_hover_windows()
   return true
 end
 
+-- Cycle-Windows
+function M.get_window_details()
+  local details = {}
+  local windows = api.nvim_list_wins()
+  local active_win_id = api.nvim_get_current_win()
+
+  for _, win_id in ipairs(windows) do
+    local buf_id = api.nvim_win_get_buf(win_id)
+    local buf_type = api.nvim_buf_get_option(buf_id, 'buftype')
+    local file_type = api.nvim_buf_get_option(buf_id, 'filetype')
+
+    if buf_type == '' or file_type == 'NvimTree' then
+      local is_active = win_id == active_win_id
+
+      table.insert(details, {
+        window_id = win_id,
+        active = is_active
+      })
+    end
+  end
+
+  return details
+end
+
+function M.move_right_win()
+  local details = M.get_window_details()
+  local num_wins = #details
+
+  local current_index = 1
+  for i, detail in ipairs(details) do
+    if detail.active then
+      current_index = i
+      break
+    end
+  end
+
+  local right_index = current_index % num_wins + 1
+
+  local right_window_id = details[right_index].window_id
+  api.nvim_set_current_win(right_window_id)
+end
+
+function M.move_left_win()
+  local details = M.get_window_details()
+  local num_wins = #details
+
+  local current_index = 1
+  for i, detail in ipairs(details) do
+    if detail.active then
+      current_index = i
+      break
+    end
+  end
+
+  local left_index = (current_index - 2 + num_wins) % num_wins + 1
+
+  local left_window_id = details[left_index].window_id
+  api.nvim_set_current_win(left_window_id)
+end
+
 -- Special-Keymaps
 function M.special_keymaps()
   local bt = vim.bo.buftype
@@ -269,13 +269,6 @@ function M.special_keymaps()
   if bn:match("crunner_") then
     map("n", "<leader>q", "<cmd>RunClose<cr>", opts)
   end
-  if bn:match("NvimTree_") then
-    map("n", "<leader>;", "<Nop>", opts)
-    map("n", "<s-cr>", "<cmd>MacOpen<cr>", opts)
-    map("n", "<leader>k", "<cmd>NvimTreeToggle<cr>", opts)
-    map("n", "<leader>q", "<cmd>NvimTreeToggle<cr>", opts)
-    map('n', '<tab>', function() require('rob.utils').move_to_right_window() end, opts)
-  end
   if bt:match("nofile") then
     map("n", "q", "<cmd>clo!<cr>", opts)
     map("n", "<esc>", "<cmd>clo!<cr>", opts)
@@ -284,19 +277,12 @@ function M.special_keymaps()
   if vim.tbl_contains({ "qf", "help", "man", "noice" }, ft) then
     map("n", "q", "<cmd>clo!<cr>", opts)
   end
-end
-
--- Toggle-Color-Column
-function M.toggle_color_column(column)
-  if vim.b.color_column_enabled then
-    vim.opt_local.colorcolumn = ''
-    vim.b.color_column_enabled = false
-  else
-    local current_column = column and tonumber(column) or vim.fn.col('.')
-    if current_column and current_column > 0 then
-      vim.opt_local.colorcolumn = tostring(current_column)
-      vim.b.color_column_enabled = true
-    end
+  if bn:match("NvimTree_") then
+    map("n", "<leader>;", "<Nop>", opts)
+    map("n", "<s-cr>", "<cmd>MacOpen<cr>", opts)
+    map("n", "<leader>k", "<cmd>NvimTreeToggle<cr>", opts)
+    map("n", "<leader>q", "<cmd>NvimTreeToggle<cr>", opts)
+    map('n', '<tab>', function() require('rob.utils').move_right_win() end, opts)
   end
 end
 
