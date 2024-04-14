@@ -43,12 +43,6 @@ map("n", "<leader>j", "mzJ`z", opts)
 map("n", ";", ":", { noremap = true })
 map("x", ";", ":", { noremap = true })
 
--- Terminal-ESC
-map("t", "<esc>", "<C-\\><C-n>", opts)
-
--- PWD
-map("n", "<m-g>", "<cmd>PWD<cr>", opts)
-
 -- Undo
 map("n", "u", ":silent! undo<cr>", opts)
 map("n", "U", ":silent! redo<cr>", opts)
@@ -72,6 +66,9 @@ map('n', 'cc', "<cmd>ClearHistory<cr>", opts)
 -- Silicon
 map("x", "<m-s>", ":'<,'>Silicon!<cr>", opts)
 
+-- Terminal-ESC
+map("t", "<esc>", "<C-\\><cmd>clo!<cr>", opts)
+
 -- Newline
 map("n", "<cr>", "<cmd>normal! o<cr>", opts)
 map("n", "<s-cr>", "<cmd>normal! O<cr>", opts)
@@ -85,8 +82,8 @@ map("n", "j", "<Plug>(accelerated_jk_gj)", opts)
 map("n", "k", "<Plug>(accelerated_jk_gk)", opts)
 
 -- Inline-Search-Replace
-map('x', '<leader>\\', ":s/", { silent = false})
-map('n', '<leader>\\', ":s/", { silent = false})
+map('x', '<leader>\\', ":s/", { silent = false })
+map('n', '<leader>\\', ":s/", { silent = false })
 
 -- Select-All
 map("x", "<leader>a", "<esc>", opts)
