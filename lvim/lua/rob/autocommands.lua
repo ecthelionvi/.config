@@ -6,7 +6,7 @@ local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
 -- Save-Cursor
-vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
+vim.api.nvim_create_autocmd('BufWinEnter', {
   group = augroup("auto-save", { clear = true }),
   pattern = '*',
   command = 'silent! normal! g`"zv',
@@ -44,7 +44,7 @@ autocmd("BufDelete", {
 })
 
 -- Quit-Nvim-Tree
-autocmd({ "QuitPre" }, {
+autocmd("QuitPre", {
   group = "nvim-tree",
   callback = function()
     pcall(function() vim.cmd("NvimTreeClose") end)
