@@ -312,7 +312,7 @@ lvim.plugins = {
       vim.g.rnvimr_bw_enable = 1
       vim.g.rnvimr_draw_border = 1
       vim.g.rnvimr_pick_enable = 1
-      vim.g.rnvimr_presets = { { width = 0.800, height = 0.800 } }
+      vim.g.rnvimr_presets = { { width = 0.890, height = 0.840 } }
       map("n", "<leader>.", "<cmd>RnvimrToggle<cr><cmd>setlocal filetype=<cr>",
         opts)
     end
