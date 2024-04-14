@@ -117,22 +117,22 @@ lvim.plugins = {
   },
 
   -- CamelCaseMotion
-  {
-    "bkad/CamelCaseMotion",
-    event = "VeryLazy",
-    map("n", "w", "<Plug>CamelCaseMotion_w",
-      opts),
-    map("n", "b", "<Plug>CamelCaseMotion_b",
-      opts),
-    map("n", "e", "<Plug>CamelCaseMotion_e",
-      opts),
-    map("n", "ge", "<Plug>CamelCaseMotion_ge",
-      opts),
-    map("o", "iw", "<Plug>CamelCaseMotion_iw",
-      opts),
-    map("x", "iw", "<Plug>CamelCaseMotion_iw",
-      opts),
-  },
+  -- {
+  --   "bkad/CamelCaseMotion",
+  --   event = "VeryLazy",
+  --   map("n", "w", "<Plug>CamelCaseMotion_w",
+  --     opts),
+  --   map("n", "b", "<Plug>CamelCaseMotion_b",
+  --     opts),
+  --   map("n", "e", "<Plug>CamelCaseMotion_e",
+  --     opts),
+  --   map("n", "ge", "<Plug>CamelCaseMotion_ge",
+  --     opts),
+  --   map("o", "iw", "<Plug>CamelCaseMotion_iw",
+  --     opts),
+  --   map("x", "iw", "<Plug>CamelCaseMotion_iw",
+  --     opts),
+  -- },
 
   -- Hop
   {

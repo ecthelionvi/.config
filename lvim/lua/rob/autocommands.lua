@@ -69,7 +69,6 @@ autocmd({ "BufNew", "BufWinEnter" }, {
   end,
 })
 
-
 -- Preserve-Cursor-Yank
 autocmd({ 'VimEnter', 'CursorMoved' }, {
   group = augroup('PreserveCursorYank', { clear = true }),
@@ -84,8 +83,7 @@ autocmd('TextYankPost', {
     if vim.v.event.operator == 'y' and vim.b.pre_yank_cursor_pos then
       vim.api.nvim_win_set_cursor(0, vim.b.pre_yank_cursor_pos)
     end
-    vim.highlight.on_yank({ higroup = 'Search', timeout = 250 })
+    vim.highlight.on_yank({ higroup = 'Search', timeout = 300 })
   end,
 })
-
 return M
