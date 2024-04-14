@@ -8,6 +8,66 @@ local cmd = vim.cmd
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true, buffer = 0 }
 
+-- Cycle-Windows
+function M.get_window_details()
+  local details = {}
+  local windows = api.nvim_list_wins()
+  local active_win_id = api.nvim_get_current_win()
+
+  for _, win_id in ipairs(windows) do
+    local buf_id = api.nvim_win_get_buf(win_id)
+    local buf_type = api.nvim_buf_get_option(buf_id, 'buftype')
+    local file_type = api.nvim_buf_get_option(buf_id, 'filetype')
+
+    if buf_type == '' or file_type == 'NvimTree' then
+      local is_active = win_id == active_win_id
+
+      table.insert(details, {
+        window_id = win_id,
+        active = is_active
+      })
+    end
+  end
+
+  return details
+end
+
+function M.move_to_right_window()
+  local details = M.get_window_details()
+  local num_windows = #details
+
+  local current_index = 1
+  for i, detail in ipairs(details) do
+    if detail.active then
+      current_index = i
+      break
+    end
+  end
+
+  local right_index = current_index % num_windows + 1
+
+  local right_window_id = details[right_index].window_id
+  api.nvim_set_current_win(right_window_id)
+end
+
+function M.move_to_left_window()
+  local details = M.get_window_details()
+  local num_windows = #details
+
+  local current_index = 1
+  for i, detail in ipairs(details) do
+    if detail.active then
+      current_index = i
+      break
+    end
+  end
+
+  local left_index = (current_index - 2 + num_windows) % num_windows + 1
+
+  local left_window_id = details[left_index].window_id
+  api.nvim_set_current_win(left_window_id)
+end
+
 -- Auto-Save
 function M.save_func()
   M.debounce(M.save, 300)()
@@ -214,6 +274,7 @@ function M.special_keymaps()
     map("n", "<s-cr>", "<cmd>MacOpen<cr>", opts)
     map("n", "<leader>k", "<cmd>NvimTreeToggle<cr>", opts)
     map("n", "<leader>q", "<cmd>NvimTreeToggle<cr>", opts)
+    map('n', '<tab>', function() require('rob.utils').move_to_right_window() end, opts)
   end
   if bt:match("nofile") then
     map("n", "q", "<cmd>clo!<cr>", opts)

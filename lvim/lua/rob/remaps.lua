@@ -74,8 +74,8 @@ map("n", "<cr>", "<cmd>normal! o<cr>", opts)
 map("n", "<s-cr>", "<cmd>normal! O<cr>", opts)
 
 -- Jump-Brackets
-map("n", "<tab>", "<cmd>MoveNext<cr>", opts)
-map("n", "<s-tab>", "<cmd>MovePrev<cr>", opts)
+-- map("n", "<tab>", "<cmd>MoveNext<cr>", opts)
+-- map("n", "<s-tab>", "<cmd>MovePrev<cr>", opts)
 
 -- Accelerated-JK
 map("n", "j", "<Plug>(accelerated_jk_gj)", opts)
@@ -126,6 +126,10 @@ map("x", "al", ":<c-u>lua require('rob.utils').line_inner()<CR>", opts)
 -- Toggle-Diagnostics-Float
 map("n", "gk", function() require('rob.utils').toggle_lsp_buf_hover() end, opts)
 map("n", "gl", function() require('rob.utils').toggle_diagnostic_hover() end, opts)
+
+-- Cycle-Windows
+map('n', '<tab>', function() require('rob.utils').move_to_right_window() end, opts)
+map('n', '<s-tab>', function() require('rob.utils').move_to_left_window() end, opts)
 
 -- Wildmenu-Navigation
 map("c", "<up>", function() return vim.fn.wildmenumode() and '<left>' or '<up>' end, { expr = true })

@@ -83,7 +83,7 @@ autocmd('TextYankPost', {
     if vim.v.event.operator == 'y' and vim.b.pre_yank_cursor_pos then
       vim.api.nvim_win_set_cursor(0, vim.b.pre_yank_cursor_pos)
     end
-    vim.highlight.on_yank({ higroup = 'Search', timeout = 300 })
+    vim.highlight.on_yank({ higroup = 'Search', timeout = 350 })
   end,
 })
 return M
