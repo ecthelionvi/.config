@@ -117,22 +117,22 @@ lvim.plugins = {
   },
 
   -- CamelCaseMotion
-  -- {
-  --   "bkad/CamelCaseMotion",
-  --   event = "VeryLazy",
-  --   map("n", "w", "<Plug>CamelCaseMotion_w",
-  --     opts),
-  --   map("n", "b", "<Plug>CamelCaseMotion_b",
-  --     opts),
-  --   map("n", "e", "<Plug>CamelCaseMotion_e",
-  --     opts),
-  --   map("n", "ge", "<Plug>CamelCaseMotion_ge",
-  --     opts),
-  --   map("o", "iw", "<Plug>CamelCaseMotion_iw",
-  --     opts),
-  --   map("x", "iw", "<Plug>CamelCaseMotion_iw",
-  --     opts),
-  -- },
+  {
+    "bkad/CamelCaseMotion",
+    event = "VeryLazy",
+    map("n", "w", "<Plug>CamelCaseMotion_w",
+      opts),
+    map("n", "b", "<Plug>CamelCaseMotion_b",
+      opts),
+    map("n", "e", "<Plug>CamelCaseMotion_e",
+      opts),
+    map("n", "ge", "<Plug>CamelCaseMotion_ge",
+      opts),
+    map("o", "iw", "<Plug>CamelCaseMotion_iw",
+      opts),
+    map("x", "iw", "<Plug>CamelCaseMotion_iw",
+      opts),
+  },
 
   -- Hop
   {
@@ -258,34 +258,6 @@ lvim.plugins = {
       })
     end,
   },
-
-  -- Silicon
-  -- {
-  --   'krivahtoo/silicon.nvim',
-  --   event = 'VeryLazy',
-  --   build = './install.sh build',
-  --   config = function()
-  --     require('silicon').setup({
-  --       font = 'JetBrainsMonoNerdFont=26',
-  --       background = '#87f',
-  --       theme = 'tokyonight_night',
-  --       line_number = true,
-  --       pad_vert = 80,
-  --       pad_horiz = 50,
-  --       output = {
-  --         clipboard = false,
-  --         path = "/Users/rob/Documents/Screenshots",
-  --         format = "silicon_[year][month][day]_[hour][minute][second].png"
-  --       },
-  --       watermark = {
-  --         text = ' @ecthelionvi',
-  --       },
-  --       window_title = function()
-  --         return vim.fn.fnamemodify(vim.fn.bufname(vim.fn.bufnr()), ':~:.')
-  --       end,
-  --     })
-  --   end
-  -- },
 
   -- Copilot
   {

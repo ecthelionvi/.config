@@ -282,7 +282,6 @@ function M.special_keymaps()
     map("n", "<s-cr>", "<cmd>MacOpen<cr>", opts)
     map("n", "<leader>k", "<cmd>NvimTreeToggle<cr>", opts)
     map("n", "<leader>q", "<cmd>NvimTreeToggle<cr>", opts)
-    map('n', '<tab>', function() require('rob.utils').move_right_win() end, opts)
   end
 end
 
