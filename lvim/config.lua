@@ -36,4 +36,7 @@ vim.g.color_column = true
 vim.o.relativenumber = true
 vim.o.titlestring = "%f - LunarVim"
 
+-- vim.api.nvim_set_keymap('n', '<S-ScrollWheelUp>', ':echo "Scrolled up!"<CR>', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<S-ScrollWheelDown>', ':echo "Scrolled down!"<CR>', { noremap = true, silent = true })
+
 return M

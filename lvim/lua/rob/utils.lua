@@ -266,22 +266,22 @@ function M.special_keymaps()
   if bn:match("ranger") then
     map("t", "<esc>", "<cmd>clo!<cr>", opts)
   end
-  if bn:match("crunner_") then
-    map("n", "<leader>q", "<cmd>RunClose<cr>", opts)
-  end
-  if bt:match("nofile") then
+  if bt:match("nofile") and ft ~= "alpha" then
     map("n", "q", "<cmd>clo!<cr>", opts)
     map("n", "<esc>", "<cmd>clo!<cr>", opts)
     map("n", "<leader>q", "<cmd>clo!<cr>", opts)
   end
-  if vim.tbl_contains({ "qf", "help", "man", "noice" }, ft) then
-    map("n", "q", "<cmd>clo!<cr>", opts)
+  if bn:match("crunner_") then
+    map("n", "<leader>q", "<cmd>RunClose<cr>", opts)
   end
   if bn:match("NvimTree_") then
     map("n", "<leader>;", "<Nop>", opts)
     map("n", "<s-cr>", "<cmd>MacOpen<cr>", opts)
     map("n", "<leader>k", "<cmd>NvimTreeToggle<cr>", opts)
     map("n", "<leader>q", "<cmd>NvimTreeToggle<cr>", opts)
+  end
+  if vim.tbl_contains({ "qf", "help", "man", "noice" }, ft) then
+    map("n", "q", "<cmd>clo!<cr>", opts)
   end
 end
 

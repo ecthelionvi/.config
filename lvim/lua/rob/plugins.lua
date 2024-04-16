@@ -43,24 +43,19 @@ lvim.plugins = {
     event = "VimEnter",
     dependencies = {
       "MunifTanjim/nui.nvim",
-    }
+      "rcarriga/nvim-notify",
+    },
+    config = function()
+      require('notify').setup({
+        timeout = 500,
+      })
+    end
   },
 
   -- Rainbow-CSV
   {
     "mechatroner/rainbow_csv",
     event = "VeryLazy",
-  },
-
-  -- Notify
-  {
-    "rcarriga/nvim-notify",
-    event = "VeryLazy",
-    config = function()
-      require("notify").setup({
-        timeout = 500,
-      })
-    end
   },
 
   -- Puppeteer
@@ -233,12 +228,19 @@ lvim.plugins = {
           },
         },
       }
-      map("n", "<c-'>", require("dial.map").inc_normal(), opts)
-      map("n", "<c-;>", require("dial.map").dec_normal(), opts)
-      map("x", "<c-'>", require("dial.map").inc_visual(), opts)
-      map("x", "<c-;>", require("dial.map").dec_visual(), opts)
-      map("x", "g<c-'>", require("dial.map").inc_gvisual(), opts)
-      map("x", "g<c-;>", require("dial.map").dec_gvisual(), opts)
+      -- map("n", "<c-'>", require("dial.map").inc_normal(), opts)
+      -- map("n", "<c-;>", require("dial.map").dec_normal(), opts)
+      -- map("x", "<c-'>", require("dial.map").inc_visual(), opts)
+      -- map("x", "<c-;>", require("dial.map").dec_visual(), opts)
+      -- map("x", "g<c-'>", require("dial.map").inc_gvisual(), opts)
+      -- map("x", "g<c-;>", require("dial.map").dec_gvisual(), opts)
+
+      map("n", "<s-left>", require("dial.map").dec_normal(), opts)
+      map("n", "<s-right>", require("dial.map").inc_normal(), opts)
+      map("x", "<s-left>", require("dial.map").dec_visual(), opts)
+      map("x", "<s-right>", require("dial.map").inc_visual(), opts)
+      map("x", "g<s-left>", require("dial.map").dec_gvisual(), opts)
+      map("x", "g<s-right>", require("dial.map").inc_gvisual(), opts)
     end
   },
 
