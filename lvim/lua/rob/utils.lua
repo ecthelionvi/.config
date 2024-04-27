@@ -263,10 +263,6 @@ function M.special_keymaps()
   if ft == "alpha" then
     map("n", "<leader>k", "<Nop>", opts)
   end
-  if ft == "lir" then
-    map("n", "q", "<cmd>quit!<cr>", opts)
-    map("n", "<leader>q", "<cmd>quit!<cr>", opts)
-  end
   if bn:match("ranger") then
     map("t", "<esc>", "<cmd>clo!<cr>", opts)
   end
@@ -274,6 +270,11 @@ function M.special_keymaps()
     map("n", "q", "<cmd>clo!<cr>", opts)
     map("n", "<esc>", "<cmd>clo!<cr>", opts)
     map("n", "<leader>q", "<cmd>clo!<cr>", opts)
+  end
+  if bt:match("nofile") and ft == "lir" then
+    map("n", "q", "<cmd>q!<cr>", opts)
+    map("n", "<esc>", "<cmd>q!<cr>", opts)
+    map("n", "<leader>q", "<cmd>q!<cr>", opts)
   end
   if bn:match("crunner_") then
     map("n", "<leader>q", "<cmd>RunClose<cr>", opts)
