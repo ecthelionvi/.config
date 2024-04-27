@@ -11,8 +11,12 @@ local opts = { noremap = true, silent = true }
 -- Macro
 map("n", "Q", "@q", opts)
 
+-- Pure Delete
+map("n", "d", '"_d', opts)
+map("n", "dd", '"_dd', opts)
+
 -- Pure-Paste
-map('x', 'p', '"_dP', opts)
+-- map('x', 'p', '"_dP', opts)
 
 -- Visual-Backspace
 map("x", "<bs>", '"_x', opts)
