@@ -263,6 +263,10 @@ function M.special_keymaps()
   if ft == "alpha" then
     map("n", "<leader>k", "<Nop>", opts)
   end
+  if ft == "lir" then
+    map("n", "q", "<cmd>quit!<cr>", opts)
+    map("n", "<leader>q", "<cmd>quit!<cr>", opts)
+  end
   if bn:match("ranger") then
     map("t", "<esc>", "<cmd>clo!<cr>", opts)
   end
