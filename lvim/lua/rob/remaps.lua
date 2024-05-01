@@ -11,12 +11,8 @@ local opts = { noremap = true, silent = true }
 -- Macro
 map("n", "Q", "@q", opts)
 
--- Pure Delete
-map("n", "d", '"_d', opts)
-map("n", "dd", '"_dd', opts)
-
 -- Pure-Paste
--- map('x', 'p', '"_dP', opts)
+map('x', 'p', '"_dP', opts)
 
 -- Visual-Backspace
 map("x", "<bs>", '"_x', opts)
@@ -42,6 +38,10 @@ map({ "n", "x" }, "c", '"_c', opts)
 
 -- Append
 map("n", "<leader>j", "mzJ`z", opts)
+
+-- Pure Delete
+map({ "n", "x" }, "d", '"_d', opts)
+map({ "n", "x" }, "dd", '"_dd', opts)
 
 -- Command Mode
 map("n", ";", ":", { noremap = true })
