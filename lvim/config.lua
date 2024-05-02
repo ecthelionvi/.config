@@ -21,7 +21,6 @@ reload("rob.formatters")
 reload("rob.treesitter")
 reload("rob.toggleterm")
 reload("rob.illuminate")
-reload("rob.accelerated")
 reload("rob.autocommands")
 
 vim.o.verbose = 0

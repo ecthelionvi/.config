@@ -24,6 +24,13 @@ lvim.plugins = {
     event = "VeryLazy",
   },
 
+
+  -- Accerlated-HL
+  {
+    "ecthelionvi/accelerated-hl",
+    event = "VeryLazy",
+  },
+
   -- Neoscroll
   {
     "karb94/neoscroll.nvim",
