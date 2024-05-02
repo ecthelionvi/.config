@@ -17,6 +17,7 @@ map('x', 'p', '"_dP', opts)
 -- Visual-Backspace
 map("x", "<bs>", '"_x', opts)
 
+
 -- Movement
 map({ "n", "x" }, "J", "}", opts)
 map({ "n", "x" }, "K", "{", opts)
