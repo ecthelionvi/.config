@@ -94,6 +94,9 @@ map('n', '<leader>\\', ":s/", { silent = false })
 map("x", "<leader>a", "<esc>", opts)
 map("n", "<leader>a", "<cmd>SelectAll<cr>", opts)
 
+-- Session
+map('n', '<leader>,', "<cmd>LoadSession<cr>", opts)
+
 -- Search-Movement
 map("n", "n", "'Nn'[v:searchforward]", { expr = true })
 map("n", "N", "'nN'[v:searchforward]", { expr = true })
