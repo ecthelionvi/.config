@@ -12,6 +12,7 @@ reload("rob.lualine")
 reload("rob.plugins")
 reload("rob.project")
 reload("rob.vimwiki")
+reload("rob.session")
 reload("rob.commands")
 reload("rob.autopairs")
 reload("rob.nvim-tree")
@@ -35,6 +36,7 @@ vim.o.fillchars = "eob: "
 vim.g.color_column = true
 vim.o.relativenumber = true
 vim.o.titlestring = "%f - LunarVim"
+
 
 -- vim.api.nvim_set_keymap('n', '<S-ScrollWheelUp>', ':echo "Scrolled up!"<CR>', { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap('n', '<S-ScrollWheelDown>', ':echo "Scrolled down!"<CR>', { noremap = true, silent = true })

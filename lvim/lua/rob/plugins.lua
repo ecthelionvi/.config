@@ -314,12 +314,12 @@ lvim.plugins = {
   },
 
   -- Persistence
-  {
-    "folke/persistence.nvim",
-    event = "BufReadPre",
-    opts = {},
-    map("n", "<leader>,", "<cmd>lua require('persistence').load({ last = true })<cr>", opts)
-  },
+  -- {
+  --   "folke/persistence.nvim",
+  --   event = "BufReadPre",
+  --   opts = {},
+  --   map("n", "<leader>,", "<cmd>lua require('persistence').load({ last = true })<cr>", opts)
+  -- },
 
   -- Code-Runner
   {
