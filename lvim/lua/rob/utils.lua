@@ -100,6 +100,14 @@ function M.dashboard()
   cmd("Alpha")
 end
 
+-- Lir-Keymaps
+function M.lir_keymaps()
+  map("n", "q", "<cmd>Dashboard<cr>", opts)
+  map("n", "<leader>q", "<cmd>q!<cr>", opts)
+  map("n", "<esc>", "<cmd>Dashboard<cr>", opts)
+  map("n", "<leader>k", "<cmd>Dashboard<cr>", opts)
+end
+
 -- Count-Buffers
 function M.count_buffers()
   return vim.tbl_count(vim.tbl_filter(function(bufnr)
@@ -266,15 +274,10 @@ function M.special_keymaps()
   if bn:match("ranger") then
     map("t", "<esc>", "<cmd>clo!<cr>", opts)
   end
-  if bt:match("nofile") and ft ~= "alpha" then
+  if bt:match("nofile") and (ft ~= "alpha" and ft ~= "lir") then
     map("n", "q", "<cmd>clo!<cr>", opts)
     map("n", "<esc>", "<cmd>clo!<cr>", opts)
     map("n", "<leader>q", "<cmd>clo!<cr>", opts)
-  end
-  if bt:match("nofile") and ft == "lir" then
-    map("n", "q", "<cmd>q!<cr>", opts)
-    map("n", "<esc>", "<cmd>q!<cr>", opts)
-    map("n", "<leader>q", "<cmd>q!<cr>", opts)
   end
   if bn:match("crunner_") then
     map("n", "<leader>q", "<cmd>RunClose<cr>", opts)

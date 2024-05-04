@@ -34,6 +34,9 @@ cmd("MovePrev", "lua require('rob.utils').jump_brackets('prev')", {})
 -- Clear-Hover
 cmd("ClearHover", "lua require('rob.utils').close_hover_windows()", {})
 
+-- Dashboard
+cmd("Dashboard", "lua require('rob.utils').dashboard()", {})
+
 -- Mac-Open
 cmd("MacOpen", "lua require('rob.utils').open_file_with_system_app()", {})
 

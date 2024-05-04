@@ -4,6 +4,8 @@ local M = {}
 
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
+local map = vim.keymap.set
+local opts = { noremap = true, silent = true, buffer = 0 }
 
 -- Save-Cursor
 vim.api.nvim_create_autocmd('BufWinEnter', {
@@ -21,6 +23,17 @@ autocmd({ "InsertLeave", "TextChanged" }, {
     end)
   end,
   pattern = "*",
+})
+
+-- Lir-Keymaps
+autocmd("FileType", {
+  group = augroup("lir_keymaps", { clear = true }),
+  pattern = "lir",
+  callback = function()
+    vim.schedule(function()
+      pcall(function() require("rob.utils").lir_keymaps() end)
+    end)
+  end,
 })
 
 -- Hide-Filetype
