@@ -12,7 +12,7 @@ local opts = { noremap = true, silent = true }
 map("n", "Q", "@q", opts)
 
 -- Pure-Paste
-map('x', 'p', '"_dP', opts)
+map('x', 'p', 'P', opts)
 
 -- Visual-Backspace
 map("x", "<bs>", '"_x', opts)
