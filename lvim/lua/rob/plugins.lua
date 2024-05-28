@@ -6,6 +6,26 @@ local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 lvim.plugins = {
+
+  {
+    'akinsho/flutter-tools.nvim',
+    lazy = false,
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'stevearc/dressing.nvim', -- optional for vim.ui.select
+    },
+    opts = {
+      lsp = {
+        color = {
+          enabled = true,
+          background = true,
+          virtual_text = true,
+          underline = true,
+        },
+      },
+    },
+  },
+
   -- Vimwiki
   {
     "vimwiki/vimwiki",
