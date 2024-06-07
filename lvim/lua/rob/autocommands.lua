@@ -6,6 +6,17 @@ local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 local opts = { noremap = true, silent = true, buffer = 0 }
 
+-- Set up the autocommand to perform the insert and delete actions when a Dart file is opened
+-- vim.api.nvim_create_autocmd('BufReadPost', {
+--   pattern = '*.dart',
+--   group = vim.api.nvim_create_augroup('DartAutoCommand', { clear = true }),
+--   callback = function()
+--     -- Enter insert mode, insert a space, and delete it
+--     vim.api.nvim_command('normal! i ')
+--     vim.api.nvim_command('normal! <BS>')
+--   end,
+-- })
+
 -- Save-Cursor
 vim.api.nvim_create_autocmd('BufWinEnter', {
   group = augroup("auto-save", { clear = true }),

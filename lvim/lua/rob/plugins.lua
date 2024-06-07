@@ -9,7 +9,7 @@ lvim.plugins = {
 
   {
     'akinsho/flutter-tools.nvim',
-    lazy = false,
+    event = "BufRead",
     dependencies = {
       'nvim-lua/plenary.nvim',
       'stevearc/dressing.nvim', -- optional for vim.ui.select
@@ -20,8 +20,11 @@ lvim.plugins = {
           enabled = true,
           background = true,
           virtual_text = true,
-          underline = true,
+          virtual_text_str = "■",
         },
+      },
+      widget_guides = {
+        enabled = true,
       },
     },
   },
@@ -126,7 +129,7 @@ lvim.plugins = {
 
   -- Context
   {
-    "ecthelionvi/nvim-treesitter-context",
+    "nvim-treesitter/nvim-treesitter-context",
     event = "BufRead",
     opts = {}
   },
